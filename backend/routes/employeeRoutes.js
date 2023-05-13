@@ -1,12 +1,12 @@
 const express = require("express");
-const router = express.Router();
 const {
 	getEmployee,
 	getSingleEmployee,
 	createEmployee,
 	updateEmployee,
 	deleteEmployee,
-} = require("../controller/EmployeeController");
+} = require("../controllers/employeeController");
+const router = express.Router();
 
 router.route("/").get(getEmployee);
 router.route("/:id").get(getSingleEmployee);

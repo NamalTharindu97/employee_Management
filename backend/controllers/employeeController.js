@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Employe = require("../models/Employee");
+const Employe = require("../models/employeeModel");
 
 //@desc GET all Employee
 //@Route GET /api/v1/tea-factory/employees
@@ -35,7 +35,7 @@ const createEmployee = asyncHandler(async (req, res) => {
 	const userAvailable = await Employe.findOne({ employeeId });
 	if (userAvailable) {
 		res.status(400);
-		throw new Error("this employee already added");
+		throw new Error("this ID already taken");
 	}
 
 	const employee = await Employe.create({
