@@ -8,12 +8,12 @@ const employeeSchema = mongoose.Schema(
 		},
 		employeeId: {
 			type: String,
-			required: [true, "please enter employeeId "],
-			unique: [true, "this ID already taken"],
+			required: [true, "please enter email address"],
+			unique: [true, "this user already registered"],
 		},
 		designation: {
 			type: String,
-			required: [true, "please enter designation"],
+			required: [true, "designation"],
 		},
 		employeeType: {
 			type: String,
@@ -21,7 +21,7 @@ const employeeSchema = mongoose.Schema(
 		},
 		experience: {
 			type: String,
-			required: [true, "enter experience"],
+			required: [true, "enter experience "],
 		},
 	},
 	{
