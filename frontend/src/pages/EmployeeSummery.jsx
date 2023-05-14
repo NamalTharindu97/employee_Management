@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Form from "../components/Form";
+import Grid from "../components/Grid";
 import axios from "axios";
 import { DeleteConfirmBtn } from "../components/deleteConfirmBtn/DeleteConfirmBtn";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeSummery = () => {
 	const [empData, setEmpDate] = useState([]);
+	const navigate = useNavigate();
+
 	const columns = [
 		{
 			field: "name",
@@ -76,9 +84,43 @@ const EmployeeSummery = () => {
 		getEmployees();
 	}, []);
 
+	const handleNavigate = () => {
+		navigate("/form");
+	};
+
 	return (
 		<div>
-			<Form empData={empData} columns={columns} />
+			<h2 className="heading-1">People</h2>
+			<hr />
+			<div className="head-section">
+				<div>
+					<Button variant="outlined" onClick={handleNavigate}>
+						Add People
+					</Button>
+				</div>
+				<div>
+					<FormControl
+						sx={{ m: 0, width: 200, margin: 0, padding: 0 }}
+					>
+						<InputLabel id="demo-simple-select-label">
+							Employee Types
+						</InputLabel>
+						<Select
+							labelId="demo-simple-select-label"
+							id="demo-simple-select"
+							// value={age}
+							label="Employee Types"
+							// onChange={handleChange}
+						>
+							<MenuItem value={10}>Ten</MenuItem>
+							<MenuItem value={20}>Twenty</MenuItem>
+							<MenuItem value={30}>Thirty</MenuItem>
+						</Select>
+					</FormControl>
+				</div>
+			</div>
+
+			<Grid empData={empData} columns={columns} />
 		</div>
 	);
 };
