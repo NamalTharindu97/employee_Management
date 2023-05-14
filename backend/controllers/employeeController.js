@@ -5,7 +5,12 @@ const Employe = require("../models/employeeModel");
 //@Route GET /api/v1/tea-factory/employees
 //@access public
 const getEmployee = asyncHandler(async (req, res) => {
-	const employees = await Employe.find();
+	const { employeeType } = req.query;
+
+	const filter = employeeType ? { employeeType } : {};
+
+	const employees = await Employe.find(filter);
+
 	res.status(200).json(employees);
 });
 

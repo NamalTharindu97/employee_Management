@@ -17,7 +17,7 @@ const Grid = ({ columns, empData }) => {
 					<DataGrid
 						rows={empData}
 						columns={columns}
-						paginationModel={{ page: 0, pageSize: 25 }}
+						paginationModel={{ page: 0, pageSize: 15 }}
 						hideFooterSelectedRowCount
 						className="grid"
 					/>

@@ -14,6 +14,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
 	name: Yup.string().required("Name is required"),
@@ -24,6 +25,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const Form = () => {
+	const navigate = useNavigate();
+
 	const formik = useFormik({
 		initialValues: {
 			name: "",
@@ -34,7 +37,7 @@ const Form = () => {
 		},
 		validationSchema: validationSchema,
 
-		onSubmit: async (values) => {
+		onSubmit: async (values, { resetForm }) => {
 			try {
 				const response = await axios.post("/employees/", {
 					name: values.name,
@@ -54,6 +57,7 @@ const Form = () => {
 						progress: undefined,
 						theme: "dark",
 					});
+					resetForm();
 				} else {
 					console.log("employee not created");
 				}
@@ -182,7 +186,14 @@ const Form = () => {
 					</FormControl>
 
 					<div className="btn-section">
-						<Button variant="text">cancel</Button>
+						<Button
+							variant="text"
+							onClick={() => {
+								navigate("/");
+							}}
+						>
+							cancel
+						</Button>
 						<Button variant="contained" type="submit">
 							Add People
 						</Button>

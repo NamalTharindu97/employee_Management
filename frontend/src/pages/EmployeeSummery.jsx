@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const EmployeeSummery = () => {
 	const [empData, setEmpDate] = useState([]);
+	const [empTypeFilter, setEmpTypeFilter] = useState("");
 	const navigate = useNavigate();
 
 	const columns = [
@@ -53,7 +54,7 @@ const EmployeeSummery = () => {
 			renderCell: (params) => (
 				<button
 					className="update-button"
-					// onClick={() => handleUpdate(params)}
+					onClick={() => handleUpdate(params)}
 				>
 					edit
 				</button>
@@ -73,7 +74,11 @@ const EmployeeSummery = () => {
 	useEffect(() => {
 		const getEmployees = async () => {
 			try {
-				const response = await axios.get("/employees/");
+				let url = "/employees";
+				if (empTypeFilter) {
+					url = `${url}?employeeType=${empTypeFilter}`;
+				}
+				const response = await axios.get(url);
 				setEmpDate(
 					response.data.map((emp) => ({ ...emp, id: emp._id }))
 				);
@@ -82,10 +87,22 @@ const EmployeeSummery = () => {
 			}
 		};
 		getEmployees();
-	}, []);
+	}, [empTypeFilter]);
 
 	const handleNavigate = () => {
 		navigate("/form");
+	};
+
+	const handleEmpTypeFilterChange = (event) => {
+		setEmpTypeFilter(event.target.value);
+	};
+
+	const handleUpdate = (params) => {
+		const rowId = params.id; // get the MongoDB _id field
+		const employee = empData.find((emp) => emp.id === rowId);
+		navigate(`/updateForm/${rowId}`, {
+			state: { employee },
+		});
 	};
 
 	return (
@@ -109,13 +126,13 @@ const EmployeeSummery = () => {
 						<Select
 							labelId="demo-simple-select-label"
 							id="demo-simple-select"
-							// value={age}
 							label="Employee Types"
-							// onChange={handleChange}
+							value={empTypeFilter}
+							onChange={handleEmpTypeFilterChange}
 						>
-							<MenuItem value={10}>Ten</MenuItem>
-							<MenuItem value={20}>Twenty</MenuItem>
-							<MenuItem value={30}>Thirty</MenuItem>
+							<MenuItem value="full-time">Full-time</MenuItem>
+							<MenuItem value="part-time">Part-time</MenuItem>
+							<MenuItem value="intern">Intern</MenuItem>
 						</Select>
 					</FormControl>
 				</div>
