@@ -1,40 +1,48 @@
-import * as React from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
-import columns from "../asserts/Data";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-const rows = [
-	{ id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-	{ id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-	{ id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-	{ id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-	{ id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-	{ id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-	{ id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-	{ id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-	{ id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
-
-const Form = () => {
+const Form = ({ columns, empData }) => {
 	return (
-		<div>
-			<Box sx={{ height: 400, width: "100%" }}>
-				<DataGrid
-					rows={rows}
-					columns={columns}
-					initialState={{
-						pagination: {
-							paginationModel: {
-								pageSize: 5,
-							},
-						},
-					}}
-					pageSizeOptions={[5]}
-					checkboxSelection
-					disableRowSelectionOnClick
-				/>
-			</Box>
-		</div>
+		<>
+			<h2 className="heading-1">People</h2>
+			<hr />
+			<div>
+				<Box sx={{ width: 200, height: 100, marginTop: 2 }}>
+					<FormControl fullWidth>
+						<InputLabel id="demo-simple-select-label">
+							Employee Types
+						</InputLabel>
+						<Select
+							labelId="demo-simple-select-label"
+							id="demo-simple-select"
+							// value={age}
+							label="Employee Types"
+							// onChange={handleChange}
+						>
+							<MenuItem value={10}>Ten</MenuItem>
+							<MenuItem value={20}>Twenty</MenuItem>
+							<MenuItem value={30}>Thirty</MenuItem>
+						</Select>
+					</FormControl>
+				</Box>
+			</div>
+			<div className="form-style">
+				<Box sx={{ height: 400, width: "90%" }}>
+					<DataGrid
+						rows={empData}
+						columns={columns}
+						paginationModel={{ page: 0, pageSize: 25 }}
+						hideFooterSelectedRowCount
+						className="grid"
+					/>
+				</Box>
+			</div>
+		</>
 	);
 };
 

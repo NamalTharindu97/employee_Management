@@ -1,0 +1,39 @@
+.my-dialog-title {
+	color: var(--white);
+	font-size: 20px;
+	padding: 10px 20px;
+	font-family: var(--thinFont);
+	font-weight: 600;
+	text-shadow: var(--text-shadow);
+}
+.context {
+	font-family: var(--thinFont);
+	font-size: 15px;
+	text-shadow: var(--text-shadow);
+}
+
+.delete-button {
+	background-color: var(--red);
+	color: white;
+	border: none;
+	padding: 6px 12px;
+	border-radius: 4px;
+	text-shadow: 0px 0px 8px rgb(255, 255, 255);
+	cursor: pointer;
+	&:hover {
+		box-shadow: 0px 0px 12px rgb(255, 255, 255);
+	}
+}
+
+.cancel-btn {
+	background-color: var(--LightGreen1);
+	color: white;
+	border: none;
+	padding: 6px 12px;
+	border-radius: 4px;
+	text-shadow: 0px 0px 8px rgb(255, 255, 255);
+	cursor: pointer;
+	&:hover {
+		box-shadow: 0px 0px 12px rgb(255, 255, 255);
+	}
+}
