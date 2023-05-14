@@ -101,6 +101,7 @@ const EmployeeSummery = () => {
 				<div>
 					<FormControl
 						sx={{ m: 0, width: 200, margin: 0, padding: 0 }}
+						size="small"
 					>
 						<InputLabel id="demo-simple-select-label">
 							Employee Types
