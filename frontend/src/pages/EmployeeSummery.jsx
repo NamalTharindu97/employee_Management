@@ -132,7 +132,10 @@ const EmployeeSummery = () => {
 						>
 							<MenuItem value="full-time">Full-time</MenuItem>
 							<MenuItem value="part-time">Part-time</MenuItem>
-							<MenuItem value="intern">Intern</MenuItem>
+							<MenuItem value="contract-basis">
+								Contract-Basis
+							</MenuItem>
+							<MenuItem value="Other">Other</MenuItem>
 						</Select>
 					</FormControl>
 				</div>

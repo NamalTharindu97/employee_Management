@@ -17,9 +17,16 @@ const Grid = ({ columns, empData }) => {
 					<DataGrid
 						rows={empData}
 						columns={columns}
-						paginationModel={{ page: 0, pageSize: 15 }}
 						hideFooterSelectedRowCount
 						className="grid"
+						initialState={{
+							pagination: {
+								paginationModel: {
+									pageSize: 5,
+								},
+							},
+						}}
+						pageSizeOptions={[5]}
 					/>
 				</Box>
 			</div>
